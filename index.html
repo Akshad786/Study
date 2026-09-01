@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyHub - Student Study Portal</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">📚 StudyHub</h2>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#subjects">Subjects</a></li>
+                <li><a href="#notes">Notes</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#ai">AI Assistant</a></li>
+            </ul>
+
+            <button id="themeBtn">🌙</button>
+        </nav>
+    </header>
+
+
+    <!-- Home -->
+    <section id="home" class="hero">
+
+        <div class="hero-text">
+            <p class="small-title">WELCOME TO STUDYHUB</p>
+
+            <h1>Study Smarter.<br>
+                <span>Learn Better.</span>
+            </h1>
+
+            <p>
+                Your simple student study portal for notes,
+                quizzes, subjects and AI-powered study assistance.
+            </p>
+
+            <a href="#subjects" class="btn">Start Learning 🚀</a>
+        </div>
+
+        <div class="hero-card">
+            <div class="book-icon">📖</div>
+            <h2>Keep Learning</h2>
+            <p>Knowledge is your greatest power.</p>
+        </div>
+
+    </section>
+
+
+    <!-- Subjects -->
+    <section id="subjects" class="section">
+
+        <h2>📚 Popular Subjects</h2>
+        <p class="section-text">Choose a subject and start learning.</p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">💻</div>
+                <h3>Programming</h3>
+                <p>C, C++, Python and JavaScript basics.</p>
+                <button onclick="showMessage('Programming')">
+                    Explore
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🗄️</div>
+                <h3>DBMS</h3>
+                <p>Database, SQL, ER diagrams and normalization.</p>
+                <button onclick="showMessage('DBMS')">
+                    Explore
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌐</div>
+                <h3>Networking</h3>
+                <p>Internet, protocols, LAN, WAN and networks.</p>
+                <button onclick="showMessage('Networking')">
+                    Explore
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧠</div>
+                <h3>Artificial Intelligence</h3>
+                <p>AI, machine learning and intelligent agents.</p>
+                <button onclick="showMessage('Artificial Intelligence')">
+                    Explore
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Notes Section -->
+<section id="notes" class="section notes-section">
+
+    <h2>📖 Study Notes</h2>
+
+    <p class="section-text">
+        Search and filter notes by subject.
+    </p>
+
+    <!-- Search -->
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="🔍 Search notes..."
+        onkeyup="filterNotes()"
+    >
+
+    <!-- Category Filter -->
+    <div class="category-filter">
+
+        <button onclick="filterCategory('all')" class="filter-btn active">
+            All
+        </button>
+
+        <button onclick="filterCategory('python')" class="filter-btn">
+            Python
+        </button>
+
+        <button onclick="filterCategory('dbms')" class="filter-btn">
+            DBMS
+        </button>
+
+        <button onclick="filterCategory('networking')" class="filter-btn">
+            Networking
+        </button>
+
+        <button onclick="filterCategory('os')" class="filter-btn">
+            Operating System
+        </button>
+
+    </div>
+
+
+    <!-- Notes -->
+    <div class="notes-list" id="notesList">
+
+        <!-- Python -->
+        <div class="note" data-category="python">
+
+            <span class="category">Python</span>
+
+            <h3>🐍 Python Basics</h3>
+
+            <p>
+                Variables, data types, loops,
+                conditions and functions.
+            </p>
+
+            <a href="notes/python.pdf"
+               target="_blank"
+               class="note-btn">
+                📖 Open PDF
+            </a>
+
+        </div>
+
+
+        <!-- DBMS -->
+        <div class="note" data-category="dbms">
+
+            <span class="category">DBMS</span>
+
+            <h3>🗄️ DBMS Basics</h3>
+
+            <p>
+                Database concepts, keys, SQL
+                and normalization.
+            </p>
+
+            <a href="notes/dbms.pdf"
+               target="_blank"
+               class="note-btn">
+                📖 Open PDF
+            </a>
+
+        </div>
+
+
+        <!-- Networking -->
+        <div class="note" data-category="networking">
+
+            <span class="category">Networking</span>
+
+            <h3>🌐 Computer Networks</h3>
+
+            <p>
+                OSI model, TCP/IP, LAN, WAN
+                and networking protocols.
+            </p>
+
+            <a href="notes/networking.pdf"
+               target="_blank"
+               class="note-btn">
+                📖 Open PDF
+            </a>
+
+        </div>
+
+
+        <!-- Operating System -->
+        <div class="note" data-category="os">
+
+            <span class="category">Operating System</span>
+
+            <h3>💻 Operating System</h3>
+
+            <p>
+                Process management, memory,
+                paging and segmentation.
+            </p>
+
+            <a href="notes/operating-system.pdf"
+               target="_blank"
+               class="note-btn">
+                📖 Open PDF
+            </a>
+
+        </div>
+
+    </div>
+
+</section>    
+
+    <!-- Quiz -->
+    <section id="quiz" class="section">
+
+        <h2>📝 Quick Quiz</h2>
+        <p class="section-text">Test your knowledge.</p>
+
+        <div class="quiz-box">
+
+            <h3 id="question">
+                Which language is used for web page structure?
+            </h3>
+
+            <div class="options">
+
+                <button onclick="checkAnswer('HTML')">
+                    HTML
+                </button>
+
+                <button onclick="checkAnswer('Python')">
+                    Python
+                </button>
+
+                <button onclick="checkAnswer('C++')">
+                    C++
+                </button>
+
+                <button onclick="checkAnswer('SQL')">
+                    SQL
+                </button>
+
+            </div>
+
+            <p id="quizResult"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- AI Assistant -->
+    <section id="ai" class="section ai-section">
+
+        <h2>🤖 AI Study Assistant</h2>
+
+        <p class="section-text">
+            Ask a study-related question.
+        </p>
+
+        <div class="chat-box">
+
+            <div id="chatMessages" class="chat-messages">
+                <div class="bot-message">
+                    👋 Hello! I'm your Study Assistant.
+                    Ask me about your studies.
+                </div>
+            </div>
+
+            <div class="chat-input">
+
+                <input
+                    type="text"
+                    id="userInput"
+                    placeholder="Ask something..."
+                >
+
+                <button onclick="sendMessage()">
+                    Send
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>📚 StudyHub</h3>
+
+        <p>
+            Learn • Practice • Improve
+        </p>
+
+        <p>
+            © 2026 StudyHub. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
