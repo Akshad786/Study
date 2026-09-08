@@ -146,14 +146,139 @@
 
     </div>
 
+<!-- Notes Section -->
+<section id="notes" class="section notes-section">
+
+    <h2>📖 Study Notes</h2>
+
+    <p class="section-text">
+        Search, filter and upload study notes.
+    </p>
+
+    <!-- Search -->
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="🔍 Search notes..."
+        onkeyup="filterNotes()"
+    >
+
+    <!-- Upload Button -->
+    <button class="upload-main-btn" onclick="openUploadBox()">
+        ➕ Upload Notes
+    </button>
+
+    <!-- Upload Box -->
+    <div id="uploadBox" class="upload-box">
+
+        <h3>📤 Upload New Notes</h3>
+
+        <input
+            type="text"
+            id="noteTitle"
+            placeholder="Enter note title"
+        >
+
+        <select id="noteCategory">
+            <option value="">Select Subject</option>
+            <option value="python">Python</option>
+            <option value="dbms">DBMS</option>
+            <option value="networking">Networking</option>
+            <option value="os">Operating System</option>
+        </select>
+
+        <input
+            type="text"
+            id="noteSemester"
+            placeholder="Semester e.g. 3rd Semester"
+        >
+
+        <textarea
+            id="noteDescription"
+            placeholder="Enter short description"
+        ></textarea>
+
+        <input
+            type="file"
+            id="noteFile"
+            accept=".pdf"
+        >
+
+        <div class="upload-buttons">
+
+            <button onclick="uploadNote()">
+                📤 Upload
+            </button>
+
+            <button
+                class="cancel-btn"
+                onclick="closeUploadBox()"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+        <p id="uploadStatus"></p>
+
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter">
+
+        <button
+            onclick="filterCategory('all')"
+            class="filter-btn active"
+        >
+            All
+        </button>
+
+        <button
+            onclick="filterCategory('python')"
+            class="filter-btn"
+        >
+            Python
+        </button>
+
+        <button
+            onclick="filterCategory('dbms')"
+            class="filter-btn"
+        >
+            DBMS
+        </button>
+
+        <button
+            onclick="filterCategory('networking')"
+            class="filter-btn"
+        >
+            Networking
+        </button>
+
+        <button
+            onclick="filterCategory('os')"
+            class="filter-btn"
+        >
+            Operating System
+        </button>
+
+    </div>
+
 
     <!-- Notes -->
-    <div class="notes-list" id="notesList">
+    <div
+        class="notes-list"
+        id="notesList"
+    >
 
-        <!-- Python -->
-        <div class="note" data-category="python">
+        <!-- Existing Python Note -->
+        <div
+            class="note"
+            data-category="python"
+        >
 
-            <span class="category">Python</span>
+            <span class="category">
+                Python
+            </span>
 
             <h3>🐍 Python Basics</h3>
 
@@ -162,19 +287,26 @@
                 conditions and functions.
             </p>
 
-            <a href="notes/python.pdf"
-               target="_blank"
-               class="note-btn">
+            <a
+                href="notes/python.pdf"
+                target="_blank"
+                class="note-btn"
+            >
                 📖 Open PDF
             </a>
 
         </div>
 
 
-        <!-- DBMS -->
-        <div class="note" data-category="dbms">
+        <!-- Existing DBMS Note -->
+        <div
+            class="note"
+            data-category="dbms"
+        >
 
-            <span class="category">DBMS</span>
+            <span class="category">
+                DBMS
+            </span>
 
             <h3>🗄️ DBMS Basics</h3>
 
@@ -183,19 +315,26 @@
                 and normalization.
             </p>
 
-            <a href="notes/dbms.pdf"
-               target="_blank"
-               class="note-btn">
+            <a
+                href="notes/dbms.pdf"
+                target="_blank"
+                class="note-btn"
+            >
                 📖 Open PDF
             </a>
 
         </div>
 
 
-        <!-- Networking -->
-        <div class="note" data-category="networking">
+        <!-- Existing Networking Note -->
+        <div
+            class="note"
+            data-category="networking"
+        >
 
-            <span class="category">Networking</span>
+            <span class="category">
+                Networking
+            </span>
 
             <h3>🌐 Computer Networks</h3>
 
@@ -204,19 +343,26 @@
                 and networking protocols.
             </p>
 
-            <a href="notes/networking.pdf"
-               target="_blank"
-               class="note-btn">
+            <a
+                href="notes/networking.pdf"
+                target="_blank"
+                class="note-btn"
+            >
                 📖 Open PDF
             </a>
 
         </div>
 
 
-        <!-- Operating System -->
-        <div class="note" data-category="os">
+        <!-- Existing OS Note -->
+        <div
+            class="note"
+            data-category="os"
+        >
 
-            <span class="category">Operating System</span>
+            <span class="category">
+                Operating System
+            </span>
 
             <h3>💻 Operating System</h3>
 
@@ -225,9 +371,11 @@
                 paging and segmentation.
             </p>
 
-            <a href="notes/operating-system.pdf"
-               target="_blank"
-               class="note-btn">
+            <a
+                href="notes/operating-system.pdf"
+                target="_blank"
+                class="note-btn"
+            >
                 📖 Open PDF
             </a>
 
@@ -235,8 +383,8 @@
 
     </div>
 
-</section>    
-
+</section>
+  
     <!-- Quiz -->
     <section id="quiz" class="section">
 

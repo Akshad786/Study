@@ -282,3 +282,226 @@ function filterNotes() {
     });
 
 }
+/* =================================
+   UPLOAD NOTES SYSTEM
+================================= */
+
+function openUploadBox() {
+
+    document.getElementById("uploadBox").style.display = "block";
+
+    document
+        .getElementById("uploadBox")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+
+function closeUploadBox() {
+
+    document.getElementById("uploadBox").style.display = "none";
+
+    document.getElementById("uploadStatus").innerHTML = "";
+}
+
+
+/* Upload Note */
+
+function uploadNote() {
+
+    let title =
+        document
+            .getElementById("noteTitle")
+            .value
+            .trim();
+
+    let category =
+        document
+            .getElementById("noteCategory")
+            .value;
+
+    let semester =
+        document
+            .getElementById("noteSemester")
+            .value
+            .trim();
+
+    let description =
+        document
+            .getElementById("noteDescription")
+            .value
+            .trim();
+
+    let file =
+        document
+            .getElementById("noteFile")
+            .files[0];
+
+    let status =
+        document.getElementById("uploadStatus");
+
+
+    /* Validation */
+
+    if (title === "") {
+
+        status.innerHTML =
+            "❌ Please enter note title.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+
+    if (category === "") {
+
+        status.innerHTML =
+            "❌ Please select subject.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+
+    if (file === undefined) {
+
+        status.innerHTML =
+            "❌ Please select a PDF file.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+
+    /* PDF Check */
+
+    if (file.type !== "application/pdf") {
+
+        status.innerHTML =
+            "❌ Only PDF files are allowed.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+
+    /* File Size */
+
+    if (file.size > 10 * 1024 * 1024) {
+
+        status.innerHTML =
+            "❌ PDF must be less than 10 MB.";
+
+        status.style.color = "red";
+
+        return;
+    }
+
+
+    /*
+       Temporary browser version.
+
+       This creates a local PDF URL.
+    */
+
+    let pdfURL =
+        URL.createObjectURL(file);
+
+
+    /* Create note */
+
+    let note =
+        document.createElement("div");
+
+    note.className =
+        "note uploaded-note";
+
+    note.setAttribute(
+        "data-category",
+        category
+    );
+
+
+    let categoryName =
+        document
+            .getElementById("noteCategory")
+            .options[
+                document
+                    .getElementById("noteCategory")
+                    .selectedIndex
+            ]
+            .text;
+
+
+    note.innerHTML = `
+
+        <span class="category">
+            ${categoryName}
+        </span>
+
+        <h3>
+            📄 ${title}
+        </h3>
+
+        <p>
+            ${description || "Study notes"}
+        </p>
+
+        <span class="semester">
+            🎓 ${semester || "Semester not specified"}
+        </span>
+
+        <a
+            href="${pdfURL}"
+            target="_blank"
+            class="note-btn"
+        >
+            📖 Open PDF
+        </a>
+
+        <button
+            class="delete-note-btn"
+            onclick="this.parentElement.remove()"
+        >
+            🗑️ Delete
+        </button>
+
+    `;
+
+
+    document
+        .getElementById("notesList")
+        .prepend(note);
+
+
+    /* Success */
+
+    status.innerHTML =
+        "✅ Notes uploaded successfully!";
+
+    status.style.color = "green";
+
+
+    /* Clear form */
+
+    document.getElementById("noteTitle").value = "";
+
+    document.getElementById("noteCategory").value = "";
+
+    document.getElementById("noteSemester").value = "";
+
+    document.getElementById("noteDescription").value = "";
+
+    document.getElementById("noteFile").value = "";
+
+
+    /* Reapply filter */
+
+    filterNotes();
+
+}

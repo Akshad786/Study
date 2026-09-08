@@ -502,3 +502,216 @@ footer p {
     background: #374151;
     color: #93c5fd;
 }
+/* Subjects - Read Only */
+#subjects .card {
+    cursor: default;
+}
+
+#subjects .card button,
+#subjects .card a {
+    display: none;
+}
+/* =========================
+   UPLOAD NOTES
+========================= */
+
+.upload-main-btn {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 13px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.upload-main-btn:hover {
+    background: #1d4ed8;
+}
+
+
+/* Upload Box */
+
+.upload-box {
+    display: none;
+
+    max-width: 650px;
+    margin: 0 auto 35px;
+
+    background: white;
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.10);
+
+    text-align: left;
+}
+
+.upload-box h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* Inputs */
+
+.upload-box input,
+.upload-box select,
+.upload-box textarea {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-family: Arial, sans-serif;
+}
+
+.upload-box textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+
+/* Upload Buttons */
+
+.upload-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    justify-content: center;
+}
+
+.upload-buttons button {
+
+    border: none;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 11px 20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.upload-buttons button:hover {
+    background: #1d4ed8;
+}
+
+.upload-buttons .cancel-btn {
+    background: #6b7280;
+}
+
+.upload-buttons .cancel-btn:hover {
+    background: #4b5563;
+}
+
+
+/* Upload Status */
+
+#uploadStatus {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+/* Uploaded Note */
+
+.uploaded-note {
+    position: relative;
+}
+
+.uploaded-note .semester {
+    display: block;
+
+    color: #666;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+}
+
+
+/* Delete Button */
+
+.delete-note-btn {
+
+    border: none;
+
+    background: #ef4444;
+
+    color: white;
+
+    padding: 8px 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    margin-left: 5px;
+}
+
+.delete-note-btn:hover {
+    background: #dc2626;
+}
+
+
+/* Dark Mode */
+
+.dark .upload-box {
+    background: #1f2937;
+    color: white;
+}
+
+.dark .upload-box input,
+.dark .upload-box select,
+.dark .upload-box textarea {
+
+    background: #374151;
+
+    color: white;
+
+    border-color: #4b5563;
+}
+
+.dark .uploaded-note .semester {
+    color: #ccc;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .upload-box {
+        padding: 20px;
+    }
+
+    .upload-buttons {
+        flex-direction: column;
+    }
+
+    .upload-buttons button {
+        width: 100%;
+    }
+
+}
