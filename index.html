@@ -10,28 +10,102 @@
 </head>
 
 <body>
-<div class="login-container">
-    <div class="login-form">
+<!-- Login / Sign Up Modal -->
 
-        <h2>🔐 Login</h2>
-        <p>Welcome back to StudyHub</p>
+<div id="authModal" class="auth-modal">
 
-        <input type="email" id="email" placeholder="Enter Email">
+    <div class="auth-box">
 
-        <input type="password" id="password" placeholder="Enter Password">
+        <button class="auth-close" onclick="closeAuth()">×</button>
 
-        <button onclick="login()">Login</button>
+        <!-- Login -->
+        <div id="loginForm">
 
-        <p id="message"></p>
+            <div class="auth-icon">🔐</div>
 
-        <a href="#">Forgot Password?</a>
+            <h2>Welcome Back!</h2>
 
-        <p class="signup">
-            Don't have an account?
-            <a href="#">Sign Up</a>
-        </p>
+            <p>Login to your StudyHub account</p>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+            >
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+            >
+
+            <button class="auth-submit" onclick="loginUser()">
+                Login
+            </button>
+
+            <p id="loginMessage" class="auth-message"></p>
+
+            <div class="auth-switch">
+                Don't have an account?
+                <button onclick="showSignup()">
+                    Sign Up
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- Sign Up -->
+
+        <div id="signupForm" class="hidden-auth">
+
+            <div class="auth-icon">📝</div>
+
+            <h2>Create Account</h2>
+
+            <p>Join StudyHub today</p>
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Enter your name"
+            >
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Enter your email"
+            >
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Create password"
+            >
+
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm password"
+            >
+
+            <button class="auth-submit" onclick="signupUser()">
+                Sign Up
+            </button>
+
+            <p id="signupMessage" class="auth-message"></p>
+
+            <div class="auth-switch">
+                Already have an account?
+                <button onclick="showLogin()">
+                    Login
+                </button>
+            </div>
+
+        </div>
 
     </div>
+
 </div>
 
 <script src="script.js"></script>
