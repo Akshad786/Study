@@ -10,13 +10,31 @@
 </head>
 
 <body>
+<div class="login-container">
+    <div class="login-form">
 
-    <!-- Navbar -->
-<li>
-    <button class="login-btn" onclick="openLogin()">
-        🔐 Login
-    </button>
-</li>
+        <h2>🔐 Login</h2>
+        <p>Welcome back to StudyHub</p>
+
+        <input type="email" id="email" placeholder="Enter Email">
+
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <button onclick="login()">Login</button>
+
+        <p id="message"></p>
+
+        <a href="#">Forgot Password?</a>
+
+        <p class="signup">
+            Don't have an account?
+            <a href="#">Sign Up</a>
+        </p>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
     <header>
         <nav class="navbar">
             <h2 class="logo">📚 StudyHub</h2>
@@ -487,45 +505,6 @@
 
     </footer>
 
-
-   <script type="module" src="script.js"></script>
-<!-- Login Modal -->
-<div id="loginModal" class="login-modal">
-
-    <div class="login-box">
-
-        <button class="close-login" onclick="closeLogin()">×</button>
-
-        <h2 id="authTitle">🔐 Login</h2>
-
-        <p id="authText">Login to continue to StudyHub</p>
-
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter Email"
-        >
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Enter Password"
-        >
-
-        <button id="authButton" onclick="loginUser()">
-            Login
-        </button>
-
-        <p id="authMessage"></p>
-
-        <p class="switch-auth">
-            Don't have an account?
-            <span onclick="showSignup()">Sign Up</span>
-        </p>
-
-    </div>
-
-</div>
-
+<script src="script.js"></script>
 </body>
 </html>
