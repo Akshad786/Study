@@ -1,22 +1,327 @@
-function login() {
+/* ================================= */
+/* LOGIN / SIGN UP SYSTEM */
+/* ================================= */
 
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let message = document.getElementById("message");
+let currentUser = null;
 
-    if (email === "" || password === "") {
-        message.innerHTML = "Please fill all fields.";
+
+/* Open Login */
+
+function openAuth() {
+
+    document.getElementById("authModal").style.display = "flex";
+
+    showLogin();
+}
+
+
+/* Close Login */
+
+function closeAuth() {
+
+    document.getElementById("authModal").style.display = "none";
+
+}
+
+
+/* Show Login */
+
+function showLogin() {
+
+    document.getElementById("loginForm").style.display = "block";
+
+    document.getElementById("signupForm").style.display = "none";
+
+    document.getElementById("loginMessage").innerHTML = "";
+
+}
+
+
+/* Show Sign Up */
+
+function showSignup() {
+
+    document.getElementById("loginForm").style.display = "none";
+
+    document.getElementById("signupForm").style.display = "block";
+
+    document.getElementById("signupMessage").innerHTML = "";
+
+}
+
+
+/* Sign Up */
+
+function signupUser() {
+
+    let name =
+        document.getElementById("signupName").value.trim();
+
+    let email =
+        document.getElementById("signupEmail").value.trim();
+
+    let password =
+        document.getElementById("signupPassword").value;
+
+    let confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    let message =
+        document.getElementById("signupMessage");
+
+
+    if (
+        name === "" ||
+        email === "" ||
+        password === "" ||
+        confirmPassword === ""
+    ) {
+
+        message.innerHTML =
+            "⚠️ Please fill all fields.";
+
+        message.style.color = "red";
+
         return;
     }
+
 
     if (password.length < 6) {
-        message.innerHTML = "Password must be at least 6 characters.";
+
+        message.innerHTML =
+            "⚠️ Password must be at least 6 characters.";
+
+        message.style.color = "red";
+
         return;
     }
 
-    message.innerHTML = "✅ Login successful!";
+
+    if (password !== confirmPassword) {
+
+        message.innerHTML =
+            "⚠️ Passwords do not match.";
+
+        message.style.color = "red";
+
+        return;
+    }
+
+
+    /*
+       Demo account storage.
+
+       This is only for frontend testing.
+    */
+
+    let user = {
+
+        name: name,
+
+        email: email,
+
+        password: password
+
+    };
+
+
+    localStorage.setItem(
+        "studyhubUser",
+        JSON.stringify(user)
+    );
+
+
+    message.innerHTML =
+        "✅ Account created successfully!";
+
+    message.style.color = "green";
+
+
+    setTimeout(function () {
+
+        showLogin();
+
+        document.getElementById("loginEmail").value =
+            email;
+
+    }, 1000);
+
 }
-});
+
+
+/* Login */
+
+function loginUser() {
+
+    let email =
+        document.getElementById("loginEmail").value.trim();
+
+    let password =
+        document.getElementById("loginPassword").value;
+
+    let message =
+        document.getElementById("loginMessage");
+
+
+    if (email === "" || password === "") {
+
+        message.innerHTML =
+            "⚠️ Please enter email and password.";
+
+        message.style.color = "red";
+
+        return;
+    }
+
+
+    let savedUser =
+        localStorage.getItem("studyhubUser");
+
+
+    if (savedUser === null) {
+
+        message.innerHTML =
+            "❌ Account not found. Please Sign Up.";
+
+        message.style.color = "red";
+
+        return;
+    }
+
+
+    let user =
+        JSON.parse(savedUser);
+
+
+    if (
+        email === user.email &&
+        password === user.password
+    ) {
+
+        currentUser = user;
+
+
+        localStorage.setItem(
+            "studyhubLoggedIn",
+            "true"
+        );
+
+
+        message.innerHTML =
+            "✅ Login successful!";
+
+        message.style.color = "green";
+
+
+        setTimeout(function () {
+
+            closeAuth();
+
+            updateLoginButton();
+
+        }, 800);
+
+
+    } else {
+
+        message.innerHTML =
+            "❌ Incorrect email or password.";
+
+        message.style.color = "red";
+
+    }
+
+}
+
+
+/* Logout */
+
+function logoutUser() {
+
+    currentUser = null;
+
+    localStorage.removeItem(
+        "studyhubLoggedIn"
+    );
+
+    updateLoginButton();
+
+}
+
+
+/* Update Navbar Button */
+
+function updateLoginButton() {
+
+    let button =
+        document.getElementById("loginBtn");
+
+
+    if (
+        localStorage.getItem("studyhubLoggedIn")
+        === "true"
+    ) {
+
+        let savedUser =
+            localStorage.getItem("studyhubUser");
+
+        if (savedUser) {
+
+            let user =
+                JSON.parse(savedUser);
+
+            button.innerHTML =
+                "🚪 Logout";
+
+            button.onclick = logoutUser;
+
+            button.title =
+                "Logged in as " + user.email;
+
+        }
+
+    } else {
+
+        button.innerHTML =
+            "🔐 Login";
+
+        button.onclick =
+            openAuth;
+
+    }
+
+}
+
+
+/* Close Modal When Clicking Outside */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+        let modal =
+            document.getElementById("authModal");
+
+        if (event.target === modal) {
+
+            closeAuth();
+
+        }
+
+    }
+);
+
+
+/* Check Login On Page Load */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        updateLoginButton();
+
+    }
+);
 
 
 // Dark / Light Mode
