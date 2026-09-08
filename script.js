@@ -23,6 +23,139 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+let signupMode = false;
+
+window.openLogin = function () {
+    document.getElementById("loginModal").style.display = "flex";
+};
+
+window.closeLogin = function () {
+    document.getElementById("loginModal").style.display = "none";
+};
+
+window.showSignup = function () {
+
+    signupMode = true;
+
+    document.getElementById("authTitle").textContent = "📝 Create Account";
+
+    document.getElementById("authText").textContent =
+        "Create your StudyHub account";
+
+    document.getElementById("authButton").textContent =
+        "Sign Up";
+
+    document.querySelector(".switch-auth").innerHTML =
+        `Already have an account?
+        <span onclick="showLogin()">Login</span>`;
+
+    document.getElementById("authMessage").textContent = "";
+};
+
+
+window.showLogin = function () {
+
+    signupMode = false;
+
+    document.getElementById("authTitle").textContent = "🔐 Login";
+
+    document.getElementById("authText").textContent =
+        "Login to continue to StudyHub";
+
+    document.getElementById("authButton").textContent =
+        "Login";
+
+    document.querySelector(".switch-auth").innerHTML =
+        `Don't have an account?
+        <span onclick="showSignup()">Sign Up</span>`;
+
+    document.getElementById("authMessage").textContent = "";
+};
+
+
+window.loginUser = async function () {
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const message =
+        document.getElementById("authMessage");
+
+    if (!email || !password) {
+        message.textContent =
+            "Please enter email and password.";
+        return;
+    }
+
+    try {
+
+        if (signupMode) {
+
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            message.textContent =
+                "✅ Account created successfully!";
+
+        } else {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            message.textContent =
+                "✅ Login successful!";
+
+            setTimeout(() => {
+                closeLogin();
+            }, 1000);
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.textContent =
+            "❌ " + error.message;
+    }
+};
+onAuthStateChanged(auth, (user) => {
+
+    const loginButton =
+        document.querySelector(".login-btn");
+
+    if (!loginButton) return;
+
+    if (user) {
+
+        loginButton.textContent = "🚪 Logout";
+
+        loginButton.onclick = async () => {
+
+            await signOut(auth);
+
+            alert("Logged out successfully.");
+
+        };
+
+    } else {
+
+        loginButton.textContent = "🔐 Login";
+
+        loginButton.onclick = openLogin;
+    }
+
+});
+
+
 // Dark / Light Mode
 
 const themeBtn = document.getElementById("themeBtn");
